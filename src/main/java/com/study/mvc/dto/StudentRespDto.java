@@ -1,9 +1,11 @@
 package com.study.mvc.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
-public class StudentDto {
+public class StudentRespDto {
     private String name;
     private int age;
     private String phone;
