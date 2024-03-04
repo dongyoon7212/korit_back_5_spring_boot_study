@@ -13,4 +13,9 @@ public class StudyController {
 
         return new ModelAndView("hello");
     }
+
+    @GetMapping("/test")
+    public String testPage(Model model) {
+        return "test";
+    }
 }
