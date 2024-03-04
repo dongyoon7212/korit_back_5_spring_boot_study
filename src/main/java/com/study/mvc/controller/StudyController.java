@@ -10,7 +10,9 @@ public class StudyController {
 
     @GetMapping("/hello")
     public ModelAndView helloPage(Model model) {
-        model.addAttribute("name", "이동윤");
+        model.addAttribute("name1", "이동윤");
+        model.addAttribute("name2", "삼동윤");
+        model.addAttribute("name3", "사동윤");
         return new ModelAndView("hello");
     }
 
