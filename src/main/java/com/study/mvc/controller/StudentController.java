@@ -38,13 +38,13 @@ public class StudentController {
         ObjectMapper newStudentList = new ObjectMapper();
         String newStudents = newStudentList.writeValueAsString(studentList);
         ResponseCookie responseCookie = ResponseCookie
-                .from("studentCookie", newStudents)
+                .from("students", "test_data")
                 .httpOnly(true)
                 .secure(true)
                 .path("/")
                 .maxAge(60)
-                .domain("localhost:8080")
                 .build();
+
         return ResponseEntity
                 .created(null)
                 .header(HttpHeaders.SET_COOKIE, responseCookie.toString())
