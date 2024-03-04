@@ -10,12 +10,13 @@ public class StudyController {
 
     @GetMapping("/hello")
     public ModelAndView helloPage(Model model) {
-
+        model.addAttribute("name", "이동윤");
         return new ModelAndView("hello");
     }
 
     @GetMapping("/test")
     public String testPage(Model model) {
+        model.addAttribute("age", 26);
         return "test";
     }
 }
