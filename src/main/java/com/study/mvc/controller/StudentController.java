@@ -9,6 +9,8 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,31 +20,34 @@ import java.util.Optional;
 public class StudentController {
 
     @PostMapping("/student")
-    public ResponseEntity<?> addStudent(@CookieValue String students, @RequestBody Student student) throws JsonProcessingException {
+    public ResponseEntity<?> addStudent(@CookieValue(required = false) String students, @RequestBody Student student) throws JsonProcessingException, UnsupportedEncodingException {
         //@RequestBody json을 객체로 변환해준다. post는 @RequestBody 무조건 쓴다.
         //하지만 json이 아니라 x-www-form-urlencoded로 데이터를 보낼땐 없어야 한다.
-
+        ObjectMapper objectMapper = new ObjectMapper();
         List<Student> studentList = new ArrayList<>();
         int lastId = 0;
 
         if(students != null) {
             if(!students.isBlank()) {
-                ObjectMapper studentsCookie = new ObjectMapper();
-                studentList = studentsCookie.readValue(students, List.class);
-                lastId = studentList.get(studentList.size() - 1).getStudentId();
+                for(Object object : objectMapper.readValue(students, List.class)){ // readValue json을 list로 바꾼다. => 바꾸면 Object타입으로 되어있다.
+                    Map<String, Object> studentMap = (Map<String, Object>) object; // object를 Map으로 다운캐스팅한다.
+                    studentList.add(objectMapper.convertValue(studentMap, Student.class)); // convertValue Map을 student객체로 바꾼다. student객체를 list로 넣게 된다.
+                }
+                lastId = studentList.get(studentList.size() - 1).getStudentId(); // list의 마지막 index값을 가져와 1을 빼고 해당 객체의 id를 가져온다.
             }
         }
 
         student.setStudentId(lastId + 1);
         studentList.add(student);
-        ObjectMapper newStudentList = new ObjectMapper();
-        String newStudents = newStudentList.writeValueAsString(studentList);
+
+        String studentListJson = objectMapper.writeValueAsString(studentList); // writeValueAsString 객체를 json으로 바꾼다.
+
         ResponseCookie responseCookie = ResponseCookie
-                .from("students", "test_data")
-                .httpOnly(true)
-                .secure(true)
-                .path("/")
-                .maxAge(60)
+                .from("students", URLEncoder.encode(studentListJson, "UTF-8")) // 큰따옴표떄문에 인코딩해야한다.
+                .httpOnly(true) // http에서 사용
+                .secure(true) // 암호화
+                .path("/") // 쿠키를 사용할 경로, 설정된 경로에서만 쿠키가 사용된다., /로 하면 루트로 설정됨(모든 경로)
+                .maxAge(60) // 유지되는 시간(60분)
                 .build();
 
         return ResponseEntity
