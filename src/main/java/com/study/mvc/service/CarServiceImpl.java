@@ -4,8 +4,9 @@ import com.study.mvc.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service //component내장되어 있다.
 public class CarServiceImpl implements CarService {
 
     final String componentName = "a";

@@ -1,10 +1,11 @@
 package com.study.mvc.repository;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component("a")
+@Repository("a")
 public class CarRepositoryImpl implements CarRepository{
 
     @Override
