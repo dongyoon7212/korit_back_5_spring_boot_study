@@ -6,7 +6,7 @@ import java.util.List;
 
 @Repository
 public class StudentRepositoryImpl implements StudentRepository {
-    List<String> studentList = List.of("전주환", "서창현", "예횽렬");
+    private List<String> studentList = List.of("전주환", "서창현", "예홍렬");
 
     @Override
     public List<String> getStudentListAll() {
