@@ -4,9 +4,7 @@ import com.study.mvc.dto.DBStudyReqDto;
 import com.study.mvc.service.DBStudyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DBController {
@@ -18,5 +16,17 @@ public class DBController {
     public ResponseEntity<?> insert(@RequestBody DBStudyReqDto dbStudyReqDto) {
 
         return ResponseEntity.ok(dbStudyService.createStudy(dbStudyReqDto));
+    }
+
+    @GetMapping("/select/study/{id}")
+    public ResponseEntity<?> selectAll(@PathVariable int id) {
+
+        return ResponseEntity.ok(dbStudyService.findStudyById(id));
+    }
+
+    @GetMapping("/select/study") //?name=이동윤
+    public ResponseEntity<?> selectStudy(@RequestParam String name) {
+
+        return ResponseEntity.ok((dbStudyService.findStudyByName(name)));
     }
 }
