@@ -87,9 +87,20 @@ public class DBStudyService {
     }
 
     public List<DBStudySelectRespDto> findAll2() {
+
         return dbStudyRepository.findAll()
                 .stream()
                 .map(Study::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public int deleteById(int id) {
+
+        return dbStudyRepository.deleteById(id);
+    }
+
+    public int putById(int id, DBStudyReqDto dbStudyReqDto) {
+
+        return dbStudyRepository.putById();
     }
 }

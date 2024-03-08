@@ -39,6 +39,25 @@ public class DBController {
     @DeleteMapping("/delete/study/{id}")
     public ResponseEntity<?> deleteStudy(@PathVariable int id) {
 
+        return ResponseEntity.ok(dbStudyService.deleteById(id));
+    }
+
+    //update는 두가지 방법이 있음
+    //1. PutMapping (전체수정) {nickname: aaa, password: 1234} => {nickname: "", password: 1111}
+    @PutMapping("/update/study/{id}")
+    public ResponseEntity<?> putStudy(
+            @PathVariable int id,
+            @RequestBody DBStudyReqDto dbStudyReqDto) {
+
+        return ResponseEntity.ok(null);
+    }
+
+    //2. PatchMapping (부분수정) {nickname: aaa, password: 1234} => {nickname: "", password: 1111} => {nickname: aaa, password: 1111}
+    @PatchMapping("/update/study/{id}")
+    public ResponseEntity<?> patchStudy(
+            @PathVariable int id,
+            @RequestBody DBStudyReqDto dbStudyReqDto) {
+
         return ResponseEntity.ok(null);
     }
 }

@@ -74,4 +74,31 @@
         where
             id = #{id}
     </delete>
+    <update
+            id="putById"
+            parameterType="com.study.mvc.entity.Study"
+    >
+        update study_tb
+        set
+            name = #{name}
+            age = #{age}
+        where
+            id=#{id}
+    </update>
+    <update
+            id="patchById"
+            parameterType="com.study.mvc.entity.Study"
+    >
+        update study_tb
+        set
+            <if test="name != null and !name.equals('')">
+                name = #{name},
+            </if>
+            <if test="age != 0">
+                age = #{age},
+            </if>
+                create_date = create_date
+        where
+            id=#{id}
+    </update>
 </mapper>
