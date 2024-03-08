@@ -61,5 +61,3 @@ public class DBController {
         return ResponseEntity.ok(dbStudyService.patchById(id, dbStudyReqDto));
     }
 }
-
-//test
