@@ -64,4 +64,14 @@
         from
             study_tb
     </select>
+    <delete
+            id="deleteById"
+            parameterType="Integer"
+    >
+        delete
+        from
+            study_tb
+        where
+            id = #{id}
+    </delete>
 </mapper>

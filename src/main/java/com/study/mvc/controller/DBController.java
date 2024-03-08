@@ -35,4 +35,10 @@ public class DBController {
 
         return ResponseEntity.ok(dbStudyService.findAll());
     }
+
+    @DeleteMapping("/delete/study/{id}")
+    public ResponseEntity<?> deleteStudy(@PathVariable int id) {
+
+        return ResponseEntity.ok(null);
+    }
 }

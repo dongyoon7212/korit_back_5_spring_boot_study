@@ -12,6 +12,7 @@ public interface DBStudyRepository {
     public Study findStudyById(int id);
     public Study findStudyByName(String name);
     public List<Study> findAll();
+    public int deleteById(int id);
 }
 
 //DTO -> Study(Entity) -> DB
