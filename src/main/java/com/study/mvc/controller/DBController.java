@@ -49,7 +49,7 @@ public class DBController {
             @PathVariable int id,
             @RequestBody DBStudyReqDto dbStudyReqDto) {
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(dbStudyService.putById(id, dbStudyReqDto));
     }
 
     //2. PatchMapping (부분수정) {nickname: aaa, password: 1234} => {nickname: "", password: 1111} => {nickname: aaa, password: 1111}
@@ -58,6 +58,6 @@ public class DBController {
             @PathVariable int id,
             @RequestBody DBStudyReqDto dbStudyReqDto) {
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(dbStudyService.patchById(id, dbStudyReqDto));
     }
 }

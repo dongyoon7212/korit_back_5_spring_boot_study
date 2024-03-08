@@ -101,6 +101,11 @@ public class DBStudyService {
 
     public int putById(int id, DBStudyReqDto dbStudyReqDto) {
 
-        return dbStudyRepository.putById();
+        return dbStudyRepository.putById(dbStudyReqDto.toEntity(id));
+    }
+
+    public int patchById(int id, DBStudyReqDto dbStudyReqDto) {
+
+        return dbStudyRepository.patchById(dbStudyReqDto.toEntity(id));
     }
 }

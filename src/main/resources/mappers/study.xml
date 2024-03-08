@@ -80,10 +80,10 @@
     >
         update study_tb
         set
-            name = #{name}
+            name = #{name},
             age = #{age}
         where
-            id=#{id}
+            id = #{id}
     </update>
     <update
             id="patchById"
@@ -99,6 +99,6 @@
             </if>
                 create_date = create_date
         where
-            id=#{id}
+            id = #{id}
     </update>
 </mapper>

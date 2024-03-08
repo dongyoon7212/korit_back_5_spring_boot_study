@@ -14,7 +14,7 @@ public interface DBStudyRepository {
     public List<Study> findAll();
     public int deleteById(int id);
     public int putById(Study study);
-    public int patchById(String string);
+    public int patchById(Study study);
 }
 
 //DTO -> Study(Entity) -> DB
