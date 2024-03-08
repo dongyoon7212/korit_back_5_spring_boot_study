@@ -3,7 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.mvc.repository.DBStudyRepository">
-    <insert id="save" parameterType="com.study.mvc.entity.Study"> <!--parameterType 매개변수로 받을거 -->
+    <insert
+            id="save"
+            parameterType="com.study.mvc.entity.Study"
+            useGeneratedKeys="true"
+            keyProperty="id"
+    > <!--parameterType 매개변수로 받을거, keyProperty 해당 변수에 generatedKeys값을 넣어줌 -->
         insert into study_tb
         values (0, #{name}, #{age}, now())
     </insert>
