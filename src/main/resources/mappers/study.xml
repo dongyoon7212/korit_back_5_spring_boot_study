@@ -52,4 +52,16 @@
         where
             name = #{name}
     </select>
+    <select
+            id="findAll"
+            resultMap="StudyResultMap"
+    >
+        select
+            id,
+            name,
+            age,
+            create_date
+        from
+            study_tb
+    </select>
 </mapper>

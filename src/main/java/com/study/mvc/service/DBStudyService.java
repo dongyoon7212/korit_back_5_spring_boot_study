@@ -8,6 +8,10 @@ import com.study.mvc.repository.DBStudyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DBStudyService {
     @Autowired //DBStudyRepository는 컴포넌트가 아니다, 하지만 실질적으로 study.xml이 컴포넌트가 되기떄문에 Autowired가 가능하다.
@@ -69,5 +73,23 @@ public class DBStudyService {
         Study study = dbStudyRepository.findStudyByName(name);
 
         return study == null ? null : study.toDto();
+    }
+
+    public List<DBStudySelectRespDto> findAll() {
+        List<DBStudySelectRespDto> respDtoList = new ArrayList<>();
+        List<Study> studyList = dbStudyRepository.findAll();
+
+        for (Study study : studyList) {
+            respDtoList.add(study.toDto());
+        }
+
+        return respDtoList;
+    }
+
+    public List<DBStudySelectRespDto> findAll2() {
+        return dbStudyRepository.findAll()
+                .stream()
+                .map(Study::toDto)
+                .collect(Collectors.toList());
     }
 }

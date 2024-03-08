@@ -19,7 +19,7 @@ public class DBController {
     }
 
     @GetMapping("/select/study/{id}")
-    public ResponseEntity<?> selectAll(@PathVariable int id) {
+    public ResponseEntity<?> selectId(@PathVariable int id) {
 
         return ResponseEntity.ok(dbStudyService.findStudyById(id));
     }
@@ -27,6 +27,12 @@ public class DBController {
     @GetMapping("/select/study") //?name=이동윤
     public ResponseEntity<?> selectStudy(@RequestParam String name) {
 
-        return ResponseEntity.ok((dbStudyService.findStudyByName(name)));
+        return ResponseEntity.ok(dbStudyService.findStudyByName(name));
+    }
+
+    @GetMapping("/select/studys")
+    public ResponseEntity<?> selectAll() {
+
+        return ResponseEntity.ok(dbStudyService.findAll());
     }
 }

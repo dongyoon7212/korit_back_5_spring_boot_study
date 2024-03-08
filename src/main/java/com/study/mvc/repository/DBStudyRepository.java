@@ -11,7 +11,7 @@ public interface DBStudyRepository {
     public int save(Study study); // insert 리턴값은 int이다.
     public Study findStudyById(int id);
     public Study findStudyByName(String name);
-    public List<Study> findStudyAll();
+    public List<Study> findAll();
 }
 
 //DTO -> Study(Entity) -> DB
